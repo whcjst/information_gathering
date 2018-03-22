@@ -1,0 +1,9 @@
+zut.edu.cn|中原工学院
+zzu.edu.cn|郑州大学
+xcitc.edu.cn|许昌职业技术学院
+hneeu.edu.cn|河南工学院
+hist.edu.cn|河南科技学院
+henu.edu.cn|河南大学
+lsgx.com.cn|漯河食品职业学院
+pdsu.edu.cn|平顶山学院
+zua.edu.cn|郑州航空工业管理学院

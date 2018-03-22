@@ -1,0 +1,89 @@
+<html lang="zh-CN">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>搜索页</title>
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Quatro - Particles</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+  ================================================== -->
+    <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="static/css/main.css">
+    <!--<link rel="stylesheet" href="static/css/vendor.css">-->
+
+    <!-- script
+    ================================================== -->
+
+
+
+</head>
+
+<body>
+
+<!-- header
+================================================== -->
+<header class="main-header">
+    <a class="menu-toggle" href="#"><span>Menu</span></a>
+</header> <!-- /header -->
+
+<!-- navigation
+================================================== -->
+<nav id="menu-nav-wrap">
+
+    <h5>Site Pages</h5>
+    <ul class="nav-list">
+        <li><a href="/index">首页</a></li>
+
+    </ul>
+
+</nav>
+
+<!-- main content
+================================================== -->
+<main id="main-404-content" class="main-content-particle-js">
+
+    <div class="content-wrap">
+
+        <div class="shadow-overlay"></div>
+
+        <div class="main-content">
+
+            <div id="tree">
+
+
+            </div> <!-- /row -->
+        </div> <!-- /main-content -->
+
+
+    </div> <!-- /content-wrap -->
+
+</main> <!-- /main-404-content -->
+
+<!-- Java Script
+================================================== -->
+
+<script src="static/js/main.js"></script>
+<script src="static/js/modernizr.js"></script>
+<script src="static/js/echarts.common.min.js"></script>
+<script>
+      // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('tree'));
+</script>
+</body>
+
+</html>

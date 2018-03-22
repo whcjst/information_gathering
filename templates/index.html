@@ -1,0 +1,233 @@
+<html lang="zh-CN">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>首页</title>
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Quatro - Particles</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+  ================================================== -->
+    <link rel="stylesheet" href="static/css/base.css">
+    <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/vendor.css">
+
+    <!-- script
+    ================================================== -->
+    <script src="static/js/modernizr.js"></script>
+    <script src="static/js/echarts.js"></script>
+
+
+</head>
+
+<body>
+
+<!-- header
+================================================== -->
+<header class="main-header">
+
+    <a class="menu-toggle" href="#"><span>Menu</span></a>
+</header> <!-- /header -->
+
+
+<!-- main content
+================================================== -->
+<main id="main-404-content" class="main-content-particle-js">
+
+    <div class="content-wrap">
+
+        <div class="shadow-overlay"></div>
+
+        <div class="main-content">
+
+            <div class="row">
+                <div class="col-xs-8">
+
+                    <h2 class="kern-this">河南省高校网站信息统计</h2>
+                    <p>
+                        <font size="3">
+                            根据河南高校名单及主域名，扫描统计各高校所有子域名或独立网站;
+                            扫描网络上的主机及网络设备的类型（操作系统指纹等）及开放端口
+                        </font>
+                    </p>
+                    <p>
+                        <font size="3">
+                            以树形结构按高校名称分别展示其主域名、所有子域名、IP网段、存活主机及网络设备类型；
+                            可导出相应信息到一个列表文件里。
+                        </font>
+
+                    </p>
+                    <div class="search">
+                        <form method="post">
+                            <input type="text" name="school" class="search-field" placeholder="输入学校名 如：中原工学院">
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <div id="image" class="col-xs-4" style="width: 700px;height:600px;">
+                </div>
+            </div> <!-- /row -->
+        </div> <!-- /main-content -->
+
+
+    </div> <!-- /content-wrap -->
+
+</main> <!-- /main-404-content -->
+
+<div id="preloader">
+    <div id="loader"></div>
+</div>
+
+<!-- Java Script
+================================================== -->
+<script src="static/js/jquery-2.1.3.min.js"></script>
+<script src="static/js/plugins.js"></script>
+<script src="static/js/main.js"></script>
+<script type="text/javascript">
+    json = [];
+    json = eval('{{result|safe }}');
+
+    school = [];
+    sec_domain = [];
+    info = [];
+    for (i = 0; i < json.length; i++) {
+        // alert(json[i]['school']);
+        school.push(json[i]['school'])
+        // // alert(school[i]);
+        sec_domain.push(json[i]['sec_domain'].length);
+        // alert(sec_domain[i]);
+        tmp = new Array();
+
+        info.push({value: json[i]['sec_domain'].length, name: json[i]['school']});
+
+    }
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('image'));
+
+    //饼图
+    option = {
+        title: {
+            text: '高校二级域名占比图',
+            subtext: '',
+            x: 'center'
+        },
+        tooltip: { //提示框组件
+            trigger: 'item', //触发类型(饼状图片就是用这个)
+            formatter: "{a} <br/>{b} : {c} ({d}%)" //提示框浮层内容格式器
+        },
+        // color: ['#48cda6', '#fd87ab', '#11abff', '#ffdf33', '#968ade'],  //手动设置每个图例的颜色
+        legend: {  //图例组件
+            right: 'right',  //图例组件离右边的距离
+
+            orient: 'horizontal',  //布局  纵向布局 图例标记居文字的左边 vertical则反之
+            width: 40,      //图行例组件的宽度,默认自适应
+            // x : 'right',   //图例显示在右边
+            y: 'center',   //图例在垂直方向上面显示居中
+            itemWidth: 10,  //图例标记的图形宽度
+            itemHeight: 10, //图例标记的图形高度
+            data: school,
+            textStyle: {    //图例文字的样式
+                color: '#3398DB',  //文字颜色
+                fontSize: 10    //文字大小
+            }
+        },
+        series: [ //系列列表
+            {
+                name: '二级域名占比',  //系列名称
+                type: 'pie',   //类型 pie表示饼图
+                center: ['50%', '55%'], //设置饼的原心坐标 不设置就会默认在中心的位置
+                radius: ['37%', '47%'], //饼图的半径,第一项是内半径,第二项是外半径,内半径为0就是真的饼,不是环形
+                itemStyle: {  //图形样式
+                    normal: { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
+                        label: {  //饼图图形上的文本标签
+                            show: false  //平常不显示
+                        },
+                        labelLine: {     //标签的视觉引导线样式
+                            show: false  //平常不显示
+                        }
+                    },
+                    emphasis: {   //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
+                        label: {  //饼图图形上的文本标签
+                            show: true,
+                            position: 'center',
+                            textStyle: {
+                                fontSize: '10',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    }
+                },
+                data: info
+
+            }
+        ]
+    }
+
+
+    // 矩形图
+    // option = {
+    //     color: ['#3398DB'],
+    //     tooltip: {
+    //         trigger: 'axis',
+    //         axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+    //             type: 'line'        // 默认为直线，可选为：'line' | 'shadow'
+    //         }
+    //     },
+    //     grid: {
+    //         left: '5%',
+    //         right: '4%',
+    //         bottom: '3%',
+    //         containLabel: true
+    //     },
+    //     xAxis: [
+    //         {
+    //             minInterval: 0.1,
+    //             fontSize: 8,
+    //             type: 'category',
+    //             color: '#FDFEFE',
+    //             data: school,
+    //             axisTick: {
+    //                 alignWithLabel: true
+    //             }
+    //         }
+    //     ],
+    //     yAxis: [
+    //         {
+    //             type: 'value'
+    //         }
+    //     ],
+    //
+    //     series: [
+    //         {
+    //             name: '直接访问',
+    //             type: 'bar',
+    //             barWidth: '60%',
+    //             data: sec_domain
+    //         }
+    //     ]
+    // };
+    //
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+
+</html>
